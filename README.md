@@ -23,13 +23,35 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Project Name: QP Assignment
+```
+Applicant Name: Saurabh Verma
+Application ID: 29584700
+
+$📋 Overview
+A role-based Grocery Booking API built using NestJS (with TypeScript), demonstrating both Admin and User capabilities. The project fulfills all required backend functionalities, supports order creation, and is fully Dockerized for easy deployment and scalability.
+```
 
 ## Project setup
 
 ```bash
 $ npm install
 ```
+## Set up environment variables
+
+Create a `.env` file in the root directory with the following content:
+
+```
+APP_PORT=8080
+DATABASE_HOST=db
+DATABASE_PORT=5432
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=********
+DATABASE_NAME=qp_assessment
+JWT_SECRET=mysecretkey
+JWT_EXPIRATION=1h
+```
+
 
 ## Compile and run the project
 
@@ -55,6 +77,58 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Types of Users
+
+### 1. Admin
+This user can perform any operations in the application such as:
+- Registering new user
+- CRUD operations
+
+### 2. User
+This type of user can perform any operation on the grocery:
+- Can view details
+
+
+## User Authentication
+
+User authentication is done using JWT tokens. The routes to handle registration and login are:
+
+```
+POST http://localhost:8080/auth/register
+POST http://localhost:8080/auth/login
+```
+
+The codes for authentication can be found inside the gateway under the user module. Passport's JWT auth is used for this purpose. An Auth guard is placed on all those controller APIs which require the user to be authenticated. 
+
+## User CRUD Operations
+
+### Get all users (Admin)
+```
+GET http://localhost:8080/users
+```
+
+### Get user by ID (Admin, User)
+```
+GET http://localhost:8080/users/:id
+```
+
+### Update user by ID (Admin)
+```
+PUT http://localhost:8080/users/:id
+```
+
+### Delete user by ID (Admin)
+```
+DELETE http://localhost:8080/users/:id
+```
+
+## Swagger Documentation
+
+Swagger documentation can be accessed at:
+```
+http://localhost:8080/api-docs#
 ```
 
 ## Deployment
